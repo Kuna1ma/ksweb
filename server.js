@@ -8,9 +8,7 @@ let MAINTENANCE = process.env.MAINTENANCE === "true";
 const ADMIN_SECRET = process.env.ADMIN_SECRET || "changeme";
 let MESSAGE = process.env.MESSAGE || "Site temporarily paused";
 
-/**
- * Public endpoint — React fetches this
- */
+// Public endpoint — React fetches this
 app.get("/status", (req, res) => {
   res.json({
     maintenance: MAINTENANCE,
@@ -19,11 +17,7 @@ app.get("/status", (req, res) => {
   });
 });
 
-/**
- * Toggle endpoint — only you can hit it with the secret
- * Example:
- *   /toggle?admin_secret=supersecret123&mode=true&msg=Please+pay
- */
+// Toggle endpoint — only you can hit it with the secret
 app.get("/toggle", (req, res) => {
   const { admin_secret, mode, msg } = req.query;
   if (admin_secret !== ADMIN_SECRET) {
@@ -42,5 +36,5 @@ app.get("/toggle", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000; // ✅ use 5000 locally, Railway will override
 app.listen(PORT, () => console.log(`Kill switch running on port ${PORT}`));

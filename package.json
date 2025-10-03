@@ -1,0 +1,14 @@
+{
+  "name": "ksweb",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
