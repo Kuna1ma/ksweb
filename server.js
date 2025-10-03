@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 
 // Kill switch endpoint
-app.get("/status", (req, res) => {
+app.get("/config", (req, res) => {
   
   res.json({
     maintenance: true, // toggle true/false
