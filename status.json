@@ -1,5 +1,5 @@
 {
-  "maintenance": false,
-  "message": "Site is live",
+  "maintenance": true,
+  "message": "Please send your payment",
   "lastUpdated": "2025-10-03T00:10:00Z"
 }
