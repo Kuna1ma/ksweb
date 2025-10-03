@@ -1,40 +1,24 @@
 const express = require("express");
 const cors = require("cors");
-
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(cors());
 
-let MAINTENANCE = process.env.MAINTENANCE === "true";
-const ADMIN_SECRET = process.env.ADMIN_SECRET || "changeme";
-let MESSAGE = process.env.MESSAGE || "Site temporarily paused";
+// Default root route (optional, just to test server is alive)
+app.get("/", (req, res) => {
+  res.send("Kill switch server is running! Use /status");
+});
 
-// Public endpoint — React fetches this
+// Status endpoint
 app.get("/status", (req, res) => {
   res.json({
-    maintenance: MAINTENANCE,
-    message: MESSAGE,
-    lastUpdated: new Date().toISOString(),
+    maintenance: false,
+    message: "Site is live again",
+    lastUpdated: "2025-10-03T00:20:00Z"
   });
 });
 
-// Toggle endpoint — only you can hit it with the secret
-app.get("/toggle", (req, res) => {
-  const { admin_secret, mode, msg } = req.query;
-  if (admin_secret !== ADMIN_SECRET) {
-    return res.status(403).json({ error: "Unauthorized" });
-  }
-
-  if (mode === "true") MAINTENANCE = true;
-  if (mode === "false") MAINTENANCE = false;
-  if (msg) MESSAGE = msg;
-
-  return res.json({
-    ok: true,
-    maintenance: MAINTENANCE,
-    message: MESSAGE,
-    lastUpdated: new Date().toISOString(),
-  });
+app.listen(PORT, () => {
+  console.log(`Kill switch running on port ${PORT}`);
 });
-
-const PORT = process.env.PORT || 5000; // ✅ use 5000 locally, Railway will override
-app.listen(PORT, () => console.log(`Kill switch running on port ${PORT}`));
