@@ -8,8 +8,8 @@ app.use(cors());
 app.get("/config", (req, res) => {
   
   res.json({
-    maintenance: false, // toggle true/false
-    message: "Payment required",
+    maintenance: true, // toggle true/false
+    message: "Maintenance",
     contact: "gaculacenon@icloud.com",
     lastUpdated: new Date().toISOString()
   });
