@@ -8,8 +8,8 @@ app.use(cors());
 app.get("/config", (req, res) => {
   
   res.json({
-    maintenance: false, // toggle true/false
-    message: "Pay $500 to resume",
+    maintenance: true, // toggle true/false
+    message: "You are not allowed to use this frontend.",
     contact: "gaculacenon@icloud.com",
     lastUpdated: new Date().toISOString()
   });
